@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>دقن الباشا | منيو الأسعار</title>
+
+<style>
+:root{
+  --bg:#000;--steel:#14161a;--line:#363a40;--silver:#c9ced4;--bright:#f4f6f8;--dim:#8d949c;
+  --chrome:linear-gradient(100deg,#7d838a 0%,#f7f9fb 24%,#aeb4bb 44%,#fff 58%,#8b9199 80%,#e3e7eb 100%);
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg);color:var(--silver);font-family:Tajawal,Tahoma,Arial,sans-serif;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{min-height:100vh;padding-top:env(safe-area-inset-top,0);padding-bottom:calc(96px + env(safe-area-inset-bottom,0))}
+
+.hero{position:relative;text-align:center;padding:28px 16px 30px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 38%,rgba(201,206,212,.2),transparent 70%)}
+.hero img{position:relative;display:block;width:min(92vw,560px);height:auto;margin:0 auto;
+  -webkit-mask-image:radial-gradient(closest-side,#000 64%,transparent 100%);mask-image:radial-gradient(closest-side,#000 64%,transparent 100%);
+  animation:rise 1.4s ease-out both}
+@keyframes rise{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+.hero h2{position:relative;margin-top:2px;font-size:clamp(26px,7vw,36px);font-weight:800;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.rule{position:relative;display:flex;align-items:center;gap:14px;max-width:300px;margin:14px auto 0}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--silver))}
+.rule::after{transform:scaleX(-1)}
+.rule i{width:9px;height:9px;background:var(--silver);transform:rotate(45deg)}
+
+nav{position:sticky;top:0;z-index:20;display:flex;gap:10px;overflow-x:auto;padding:12px 14px;padding-top:calc(12px + env(safe-area-inset-top,0));background:rgba(0,0,0,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;min-height:42px;display:flex;align-items:center;padding:0 18px;border:1px solid var(--line);border-radius:999px;color:var(--silver);text-decoration:none;font-weight:700;font-size:16px;white-space:nowrap;transition:background .2s,color .2s}
+nav a.on{background:var(--chrome);color:#000;border-color:transparent}
+nav a:focus-visible,.zoom:focus-visible,.btn:focus-visible,.print:focus-visible,input:focus-visible{outline:3px solid var(--bright);outline-offset:3px}
+
+main{max-width:560px;margin:0 auto;padding:22px 14px 8px}
+.card{scroll-margin-top:84px;margin-bottom:22px}
+.zoom{display:block;width:100%;padding:0;border:1px solid var(--silver);border-radius:6px;background:var(--steel);cursor:zoom-in;overflow:hidden;box-shadow:0 0 0 5px #000,0 0 0 6px var(--line),0 18px 50px rgba(201,206,212,.12)}
+.zoom img{display:block;width:100%;height:auto}
+footer{text-align:center;color:var(--dim);font-size:14px;padding:14px}
+
+.bar{position:fixed;inset:auto 0 0 0;z-index:30;display:grid;grid-template-columns:1.25fr 1fr;gap:10px;padding:14px 14px calc(14px + env(safe-area-inset-bottom,0));background:linear-gradient(to top,#000 62%,rgba(0,0,0,0))}
+.bar>*{max-width:none}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;border-radius:6px;font:800 18px Tahoma,Arial,sans-serif;text-decoration:none;border:1px solid var(--silver)}
+.btn svg{width:22px;height:22px;fill:currentColor}
+.btn.solid{background:var(--chrome);color:#000;border-color:transparent}
+.btn.line{background:#000;color:var(--bright)}
+
+#lb{position:fixed;inset:0;z-index:50;display:none;background:rgba(0,0,0,.96);overflow:auto;-webkit-overflow-scrolling:touch}
+#lb.on{display:block}
+#lb img{display:block;width:min(100%,900px);margin:0 auto}
+#lb button{position:fixed;top:calc(12px + env(safe-area-inset-top,0));left:12px;width:48px;height:48px;border-radius:50%;border:1px solid var(--silver);background:#000;color:var(--bright);font-size:26px;cursor:pointer}
+
+#poster{display:none;padding:20px}
+.ctrl{max-width:560px;margin:0 auto 20px;display:grid;gap:10px}
+.ctrl label{color:var(--bright);font-weight:700}
+.ctrl input{width:100%;min-height:50px;padding:0 14px;background:var(--steel);border:1px solid var(--line);border-radius:4px;color:var(--bright);font:16px Tahoma,Arial,sans-serif;direction:ltr}
+.print{min-height:54px;border:0;border-radius:4px;background:var(--chrome);color:#000;font:800 18px Tahoma,Arial,sans-serif;cursor:pointer}
+.sheet{width:min(100%,148mm);aspect-ratio:148/210;margin:0 auto;background:#000;border:1px solid var(--silver);padding:5%;display:flex}
+.frame{flex:1;border:1px solid var(--line);outline:1px solid var(--silver);outline-offset:-7px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:5% 6%;overflow:hidden}
+.frame img{width:92%;height:auto;-webkit-mask-image:radial-gradient(closest-side,#000 64%,transparent 100%);mask-image:radial-gradient(closest-side,#000 64%,transparent 100%)}
+.scan{font-size:clamp(18px,4.6vw,24px);color:var(--bright);font-weight:800}
+.qrbox{background:var(--bright);padding:12px;border-radius:4px;line-height:0}
+.qrbox img,.qrbox canvas{width:min(44vw,210px)!important;height:auto!important}
+.info{font-size:clamp(14px,3.6vw,18px);color:var(--silver);line-height:1.9;direction:ltr}
+.info b{color:var(--bright);letter-spacing:.12em;font-size:1.15em}
+body.is-poster .hero,body.is-poster nav,body.is-poster main,body.is-poster footer,body.is-poster .bar{display:none}
+body.is-poster #poster{display:block}
+body.is-poster{padding-bottom:0}
+@media print{
+  @page{size:A5;margin:0}
+  html,body{background:#000}
+  .ctrl{display:none}
+  #poster{padding:0}
+  .sheet{width:148mm;height:210mm;border:0}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media (prefers-reduced-motion:reduce){.hero img{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img id="logo" src="assets/media-00.webp" alt="دقن الباشا Salon &amp; Spa">
+  <h2>منيو الأسعار</h2>
+  <div class="rule"><i></i></div>
+</header>
+
+<nav id="nav" aria-label="أقسام المنيو"><a href="#s1">الحلاقة</a><a href="#s2">العناية بالبشرة</a><a href="#s3">Body Care</a><a href="#s4">Treatment Hair</a><a href="#s5">واكس</a></nav>
+
+<main><section class="card" id="s1"><button class="zoom" type="button" aria-label="تكبير قسم الحلاقة"><img src="assets/media-01.webp" alt="منيو دقن الباشا - قسم الحلاقة" ></button></section><section class="card" id="s2"><button class="zoom" type="button" aria-label="تكبير قسم العناية بالبشرة"><img src="assets/media-02.webp" alt="منيو دقن الباشا - قسم العناية بالبشرة" loading="lazy"></button></section><section class="card" id="s3"><button class="zoom" type="button" aria-label="تكبير قسم body care"><img src="assets/media-03.webp" alt="منيو دقن الباشا - قسم body care" loading="lazy"></button></section><section class="card" id="s4"><button class="zoom" type="button" aria-label="تكبير قسم treatment hair"><img src="assets/media-04.webp" alt="منيو دقن الباشا - قسم treatment hair" loading="lazy"></button></section><section class="card" id="s5"><button class="zoom" type="button" aria-label="تكبير قسم واكس"><img src="assets/media-05.webp" alt="منيو دقن الباشا - قسم واكس" loading="lazy"></button></section></main>
+
+<footer>دقن الباشا</footer>
+
+<div class="bar">
+  <a class="btn solid" href="https://wa.me/201556782015" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.27-1.38A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 1 1 6.97 3.86Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.1-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.41-.56-.42h-.47c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.55c.12.16 1.73 2.64 4.2 3.7.59.26 1.05.41 1.4.52.59.19 1.13.16 1.55.1.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.23-.16-.47-.28Z"/></svg>
+    احجز واتساب
+  </a>
+  <a class="btn line" href="tel:+201556782015">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1l-2.2 2.2Z"/></svg>
+    اتصل
+  </a>
+</div>
+
+<div id="lb" role="dialog" aria-label="عرض المنيو"><button type="button" aria-label="إغلاق">×</button><img alt=""></div>
+
+<section id="poster" aria-label="لوحة الطباعة">
+  <div class="ctrl">
+    <label for="url">رابط المنيو بعد الرفع على نتلفاي</label>
+    <input id="url" type="url" inputmode="url" placeholder="https://your-site.netlify.app">
+    <button class="print" id="printBtn" type="button">اطبع اللوحة</button>
+  </div>
+  <div class="sheet"><div class="frame">
+    <img id="plogo" alt="دقن الباشا">
+    <p class="scan">امسح الكود وشوف المنيو</p>
+    <div class="qrbox" id="qr"></div>
+    <div class="info">WhatsApp &amp; Call<br><b>01556782015</b></div>
+  </div></div>
+</section>
+
+<script src="assets/qrcode-local.js"></script>
+<script>
+(function(){
+  // تكبير الصورة
+  var lb=document.getElementById('lb'),lbi=lb.querySelector('img');
+  document.querySelectorAll('.zoom').forEach(function(b){
+    b.addEventListener('click',function(){lbi.src=b.querySelector('img').src;lb.classList.add('on');lb.scrollTop=0;document.body.style.overflow='hidden'});
+  });
+  function closeLb(){lb.classList.remove('on');document.body.style.overflow=''}
+  lb.addEventListener('click',closeLb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+
+  // تمييز القسم الحالي في الشريط
+  var links=[].slice.call(document.querySelectorAll('#nav a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){
+            var on=a.getAttribute('href')==='#'+e.target.id;
+            a.classList.toggle('on',on);
+            if(on)a.scrollIntoView({block:'nearest',inline:'center'});
+          });
+        }
+      });
+    },{rootMargin:'-35% 0px -55% 0px'});
+    document.querySelectorAll('.card').forEach(function(c){io.observe(c)});
+  }
+
+  // لوحة الطباعة
+  document.getElementById('plogo').src=document.getElementById('logo').src;
+  var input=document.getElementById('url');
+  try{input.value=location.protocol.indexOf('http')===0?location.href.split('#')[0]:''}catch(e){}
+  function qr(){
+    var box=document.getElementById('qr'),v=input.value.trim()||location.href.split('#')[0];
+    box.innerHTML='';
+    try{if(typeof QRCode==='undefined'){box.textContent='تعذر تحميل أداة إنشاء الكود';return;}new QRCode(box,{text:v,width:460,height:460,colorDark:'#000000',colorLight:'#f4f6f8',correctLevel:QRCode.CorrectLevel.H})}
+    catch(e){box.textContent='تعذر إنشاء الكود'}
+  }
+  function route(){
+    var p=location.hash==='#poster';
+    document.body.classList.toggle('is-poster',p);
+    if(p)qr();
+  }
+  input.addEventListener('input',qr);
+  document.getElementById('printBtn').addEventListener('click',function(){window.print()});
+  window.addEventListener('hashchange',route);
+  route();
+})();
+</script>
+</body>
+</html>
